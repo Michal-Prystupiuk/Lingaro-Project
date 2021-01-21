@@ -1,12 +1,21 @@
 import React from 'react';
-import { Flex } from 'rebass/styled-components';
+import { Flex, Button, Text } from 'rebass/styled-components';
 
-const ListElement = ({ obj }) => {
+const ListElement = ({ obj, onClick }) => {
   const { id, text } = obj;
 
   return (
-    <Flex mt="20px" p="20px" style={{ border: '1px solid black' }}>
-      {id}.{text}
+    <Flex
+      mt="20px"
+      p="20px"
+      style={{ border: '1px solid black' }}
+      justifyContent="space-between"
+    >
+      <Text>
+        {id}.{text}
+      </Text>
+
+      <Button onClick={onClick}> X </Button>
     </Flex>
   );
 };

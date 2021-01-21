@@ -13,7 +13,7 @@ const updateArray = (stack, elementId) => {
     if (stack[i].id < elementId) {
       newStack.push(stack[i]);
     } else if (stack[i].id > elementId) {
-      newStack.push({ id: stack[i].id - 1, element: stack[i].element });
+      newStack.push({ id: stack[i].id - 1, text: stack[i].text });
     }
   }
 
@@ -25,7 +25,7 @@ const elementListReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case ADD_ELEMENT:
-        draft.data.push(action.element);
+        draft.data.push({ id: draft.data.length, text: action.elementText });
         break;
       case DELETE_ELEMENT:
         draft.data = updateArray(draft.data, action.elementId);

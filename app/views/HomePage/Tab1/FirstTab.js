@@ -1,18 +1,35 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { Flex, Button, Text } from 'rebass/styled-components';
 
-import { validateMinLength } from 'utils';
+import {
+  addElementToList,
+  deleteElementFromList,
+} from 'containers/HomePage/actions';
+import { ListSelector } from 'containers/HomePage/selectors';
+
+import { validateMinLength, validateAlreadyExist } from 'utils';
 
 import { Row } from './styledComponents';
 import ListElement from './components';
 
 const FirstTab = () => {
   console.log('firsttab');
+  const dispatch = useDispatch();
 
-  const renderListOfElement = () => (
-    <ListElement obj={{ id: 1, text: 'hello world' }} />
-  );
+  const data = useSelector(ListSelector);
+
+  const renderListOfElement = () =>
+    data.map(element => (
+      <ListElement
+        obj={element}
+        key={element.id}
+        onClick={() => {
+          dispatch(deleteElementFromList(element.id));
+        }}
+      />
+    ));
 
   return (
     <Flex p="0px 20px 20px" flexDirection="column">
@@ -23,8 +40,12 @@ const FirstTab = () => {
             console.log(values);
             setSubmitting(false);
             resetForm();
+            dispatch(addElementToList(values.elementToAdd));
           }}
-          validate={({ elementToAdd }) => validateMinLength(elementToAdd)}
+          validate={({ elementToAdd }) =>
+            validateMinLength(elementToAdd) ||
+            validateAlreadyExist(elementToAdd, data)
+          }
         >
           {({
             handleSubmit,

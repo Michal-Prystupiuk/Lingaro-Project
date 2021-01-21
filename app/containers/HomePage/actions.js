@@ -1,8 +1,8 @@
 import { ADD_ELEMENT, DELETE_ELEMENT } from './consts';
 
-export const addElementToList = element => ({
+export const addElementToList = elementText => ({
   type: ADD_ELEMENT,
-  element,
+  elementText,
 });
 
 export const deleteElementFromList = elementId => ({

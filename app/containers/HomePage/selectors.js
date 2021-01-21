@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectElementList = state => state.carouselSlider || initialState;
+const selectElementList = state => state.elementList || initialState;
 
 export const ListSelector = createSelector(
   selectElementList,

@@ -1,1 +1,1 @@
-export { validateMinLength } from './validators';
+export { validateMinLength, validateAlreadyExist } from './validators';
