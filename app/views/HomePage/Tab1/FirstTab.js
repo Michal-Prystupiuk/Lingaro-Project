@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { Flex, Button, Text } from 'rebass/styled-components';
@@ -15,21 +15,25 @@ import { Row } from './styledComponents';
 import ListElement from './components';
 
 const FirstTab = () => {
-  console.log('firsttab');
   const dispatch = useDispatch();
+  const [isActive, setIsActive] = useState(false);
 
   const data = useSelector(ListSelector);
 
   const renderListOfElement = () =>
-    data.map(element => (
-      <ListElement
-        obj={element}
-        key={element.id}
-        onClick={() => {
-          dispatch(deleteElementFromList(element.id));
-        }}
-      />
-    ));
+    data.map(element =>
+      isActive && element.id % 2 === 1 ? (
+        undefined
+      ) : (
+        <ListElement
+          obj={element}
+          key={element.id}
+          onClick={() => {
+            dispatch(deleteElementFromList(element.id));
+          }}
+        />
+      ),
+    );
 
   return (
     <Flex p="0px 20px 20px" flexDirection="column">
@@ -83,6 +87,11 @@ const FirstTab = () => {
             </Form>
           )}
         </Formik>
+        <Row>
+          <Flex>tu bedzie search</Flex>
+
+          <Button onClick={() => setIsActive(!isActive)}>toggle</Button>
+        </Row>
       </Flex>
 
       {renderListOfElement()}
