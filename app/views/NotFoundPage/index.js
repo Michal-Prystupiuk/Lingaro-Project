@@ -8,12 +8,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import messages from './messages';
+const NotFoundPage = () => <FormattedMessage id="notFoundPage.title" />;
 
-export default function NotFound() {
-  return (
-    <h1>
-      <FormattedMessage {...messages.header} />
-    </h1>
-  );
-}
+export default NotFoundPage;
