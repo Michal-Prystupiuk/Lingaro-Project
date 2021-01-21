@@ -8,11 +8,7 @@ const ROUTES = [
     component: HomePage,
   },
   {
-    path: PATHS.TAB_1,
-    component: HomePage,
-  },
-  {
-    path: PATHS.TAB_2,
+    path: PATHS.HOMEPAGE_TAB,
     component: HomePage,
   },
   {

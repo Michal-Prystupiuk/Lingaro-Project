@@ -1,5 +1,11 @@
+export const HOMEPAGE_TAB_NAMES = {
+  TAB_1: 'tab1',
+  TAB_2: 'tab2',
+};
+
 export const PATHS = {
   HOMEPAGE: '/homepage',
-  TAB_1: '/homepage/tab1',
-  TAB_2: '/homepage/tab2',
+  HOMEPAGE_TAB: `/homepage/:tabId(${Object.values(HOMEPAGE_TAB_NAMES).join(
+    '|',
+  )})`,
 };
