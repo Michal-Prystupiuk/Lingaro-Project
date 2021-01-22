@@ -12,7 +12,7 @@ const ListElement = ({ obj, onClick }) => {
       justifyContent="space-between"
     >
       <Text>
-        {id}.{text}
+        {id + 1}. {text}
       </Text>
 
       <Button onClick={onClick}> X </Button>

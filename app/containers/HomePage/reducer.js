@@ -1,9 +1,10 @@
 import produce from 'immer';
-import { ADD_ELEMENT, DELETE_ELEMENT } from './consts';
+import { ADD_ELEMENT, DELETE_ELEMENT, UPDATE_SEARCH_TEXT } from './consts';
 
 // The initial state of the App
 export const initialState = {
   data: [],
+  searchText: '',
 };
 
 const updateArray = (stack, elementId) => {
@@ -29,6 +30,9 @@ const elementListReducer = (state = initialState, action) =>
         break;
       case DELETE_ELEMENT:
         draft.data = updateArray(draft.data, action.elementId);
+        break;
+      case UPDATE_SEARCH_TEXT:
+        draft.searchText = action.searchText;
         break;
     }
   });

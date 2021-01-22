@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
-import { Flex, Button, Text } from 'rebass/styled-components';
+import { Flex, Button } from 'rebass/styled-components';
 
 import {
   addElementToList,
   deleteElementFromList,
 } from 'containers/HomePage/actions';
-import { ListSelector } from 'containers/HomePage/selectors';
+import {
+  ListSelector,
+  sortedListSelector,
+} from 'containers/HomePage/selectors';
 
 import { validateMinLength, validateAlreadyExist } from 'utils';
 
-import { Row } from './styledComponents';
-import ListElement from './components';
+import { ListElement, AddElementForm, SearchForm } from './components';
 
 const FirstTab = () => {
   const dispatch = useDispatch();
   const [isActive, setIsActive] = useState(false);
 
-  const data = useSelector(ListSelector);
+  const data = useSelector(sortedListSelector);
 
   const renderListOfElement = () =>
-    data.map(element =>
-      isActive && element.id % 2 === 1 ? (
+    data.map((element, index) =>
+      isActive && index % 2 === 1 ? (
         undefined
       ) : (
         <ListElement
@@ -41,57 +43,28 @@ const FirstTab = () => {
         <Formik
           initialValues={{ elementToAdd: '' }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            console.log(values);
             setSubmitting(false);
             resetForm();
-            dispatch(addElementToList(values.elementToAdd));
+            dispatch(addElementToList(values.elementToAdd.trim()));
           }}
           validate={({ elementToAdd }) =>
             validateMinLength(elementToAdd) ||
             validateAlreadyExist(elementToAdd, data)
           }
         >
-          {({
-            handleSubmit,
-            handleChange,
-            handleBlur,
-            values,
-            errors,
-            isSubmitting,
-            isValid,
-            dirty,
-          }) => (
-            <Form onSubmit={handleSubmit}>
-              <Flex flexDirection="column" width="100%">
-                <Text color="red" fontSize="0.8rem" textAlign="left" mb="5px">
-                  {errors[0]}
-                </Text>
-
-                <Row mt={errors.length > 0 ? undefined : '13.75px'}>
-                  <input
-                    type="text"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.elementToAdd}
-                    name="elementToAdd"
-                  />
-
-                  <button
-                    type="submit"
-                    disabled={!isValid || !dirty || isSubmitting}
-                  >
-                    Add
-                  </button>
-                </Row>
-              </Flex>
-            </Form>
-          )}
+          {props => <AddElementForm props={props} />}
         </Formik>
-        <Row>
-          <Flex>tu bedzie search</Flex>
 
-          <Button onClick={() => setIsActive(!isActive)}>toggle</Button>
-        </Row>
+        <Formik
+          initialValues={{ search: '' }}
+          onSubmit={(value, { resetForm }) => {
+            resetForm();
+          }}
+        >
+          {props => <SearchForm props={props} />}
+        </Formik>
+
+        <Button onClick={() => setIsActive(!isActive)}>toggle</Button>
       </Flex>
 
       {renderListOfElement()}

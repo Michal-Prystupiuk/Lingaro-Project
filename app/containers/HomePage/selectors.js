@@ -7,3 +7,9 @@ export const ListSelector = createSelector(
   selectElementList,
   state => state.data,
 );
+
+export const sortedListSelector = createSelector(
+  selectElementList,
+  state =>
+    state.data.filter(element => element.text.includes(state.searchText)),
+);
