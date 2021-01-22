@@ -1,3 +1,6 @@
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+
 export const validateMinLength = value => {
   if (!value) return undefined;
 
@@ -5,7 +8,7 @@ export const validateMinLength = value => {
   const error = [];
 
   if (!isLengthValid) {
-    error.push('Name of element should have at least 5 characters');
+    error.push(<FormattedMessage id="input.validateMinLength.error" />);
   }
 
   return error.length === 0 ? undefined : error;
@@ -18,7 +21,7 @@ export const validateAlreadyExist = (value, array) => {
   const error = [];
 
   if (isValueInArray) {
-    error.push('Element already exists');
+    error.push(<FormattedMessage id="input.validateAlreadyExist.error" />);
   }
 
   return error.length === 0 ? undefined : error;

@@ -5,5 +5,7 @@
   "homePage.tab1.toggle.button.show": "Show all",
   "homePage.tab1.toggle.button.hide": "Hide odd toggle",
   "homePage.tab2.title": "Tab 2",
-  "homePage.tab2.description": "This is tab 2 view"
+  "homePage.tab2.description": "This is tab 2 view",
+  "input.validateMinLength.error":  "Name of element should have at least 5 characters",
+  "input.validateAlreadyExist.error":  "Element already exists"
 }
