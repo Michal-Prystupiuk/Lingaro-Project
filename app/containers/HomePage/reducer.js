@@ -1,24 +1,11 @@
 import produce from 'immer';
+import { updateArray } from './utils';
 import { ADD_ELEMENT, DELETE_ELEMENT, UPDATE_SEARCH_TEXT } from './consts';
 
 // The initial state of the App
 export const initialState = {
   data: [],
   searchText: '',
-};
-
-const updateArray = (stack, elementId) => {
-  const newStack = [];
-
-  for (let i = 0; i < stack.length; i++) {
-    if (stack[i].id < elementId) {
-      newStack.push(stack[i]);
-    } else if (stack[i].id > elementId) {
-      newStack.push({ id: stack[i].id - 1, text: stack[i].text });
-    }
-  }
-
-  return newStack;
 };
 
 /* eslint-disable default-case, no-param-reassign */

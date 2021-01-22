@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+/** @type {(value?: string) => any} */
 export const validateMinLength = value => {
   if (!value) return undefined;
 
@@ -14,6 +15,7 @@ export const validateMinLength = value => {
   return error.length === 0 ? undefined : error;
 };
 
+/** @type {(value?: string, array?: [{id: number, text: string}]) => any} */
 export const validateAlreadyExist = (value, array) => {
   if (!value || !array) return undefined;
 
