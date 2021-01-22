@@ -8,8 +8,13 @@ export const ListSelector = createSelector(
   state => state.data,
 );
 
-export const sortedListSelector = createSelector(
+export const SortedListSelector = createSelector(
   selectElementList,
   state =>
     state.data.filter(element => element.text.includes(state.searchText)),
+);
+
+export const SearchTextSelector = createSelector(
+  selectElementList,
+  state => state.searchText,
 );

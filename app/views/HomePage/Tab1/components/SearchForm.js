@@ -11,10 +11,7 @@ const AddElementForm = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (values.search) { 
-      dispatch(updateSearchText(values.search));
-    // }
-    console.log(values.search);
+    dispatch(updateSearchText(values.search));
   }, [values.search]);
 
   return (

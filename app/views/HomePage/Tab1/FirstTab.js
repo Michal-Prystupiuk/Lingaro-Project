@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
 import { Flex, Button } from 'rebass/styled-components';
 
 import {
@@ -8,8 +8,8 @@ import {
   deleteElementFromList,
 } from 'containers/HomePage/actions';
 import {
-  ListSelector,
-  sortedListSelector,
+  SortedListSelector,
+  SearchTextSelector,
 } from 'containers/HomePage/selectors';
 
 import { validateMinLength, validateAlreadyExist } from 'utils';
@@ -20,7 +20,8 @@ const FirstTab = () => {
   const dispatch = useDispatch();
   const [isActive, setIsActive] = useState(false);
 
-  const data = useSelector(sortedListSelector);
+  const data = useSelector(SortedListSelector);
+  const currentSearchText = useSelector(SearchTextSelector);
 
   const renderListOfElement = () =>
     data.map((element, index) =>
@@ -56,7 +57,7 @@ const FirstTab = () => {
         </Formik>
 
         <Formik
-          initialValues={{ search: '' }}
+          initialValues={{ search: currentSearchText }}
           onSubmit={(value, { resetForm }) => {
             resetForm();
           }}

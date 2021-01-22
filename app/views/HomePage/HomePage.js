@@ -9,27 +9,21 @@ import { HOMEPAGE_TABS } from './consts';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
 
-const HomePage = () => {
-  console.log('yo');
+const HomePage = () => (
+  <Flex flexDirection="column" textAlign="center" p="20px">
+    <StyledHeader>
+      <StyledButton onClick={HOMEPAGE_TABS[0].onClick}>
+        <FormattedMessage id="homePage.tab1.title" />
+      </StyledButton>
 
-  // const { tabId } = useParams();
+      <StyledButton onClick={HOMEPAGE_TABS[1].onClick}>
+        <FormattedMessage id="homePage.tab2.title" />
+      </StyledButton>
+    </StyledHeader>
 
-  return (
-    <Flex flexDirection="column" textAlign="center" p="20px">
-      <StyledHeader>
-        <StyledButton onClick={HOMEPAGE_TABS[0].onClick}>
-          <FormattedMessage id="homePage.tab1.title" />
-        </StyledButton>
-
-        <StyledButton onClick={HOMEPAGE_TABS[1].onClick}>
-          <FormattedMessage id="homePage.tab2.title" />
-        </StyledButton>
-      </StyledHeader>
-
-      <Route path={HOMEPAGE_TABS[0].path} component={Tab1} />
-      <Route path={HOMEPAGE_TABS[1].path} component={Tab2} />
-    </Flex>
-  );
-};
+    <Route path={HOMEPAGE_TABS[0].path} component={Tab1} />
+    <Route path={HOMEPAGE_TABS[1].path} component={Tab2} />
+  </Flex>
+);
 
 export default HomePage;
