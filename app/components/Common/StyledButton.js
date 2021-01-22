@@ -4,19 +4,11 @@ import styled from 'styled-components';
 export const StyledButton = styled(Button)`
   color: black;
   background-color: lightgrey;
+  transition: 0.5s ease-in-out;
   cursor: pointer;
 
   &:hover {
     background-color: lightblue;
-  }
-
-  &:active {
-    background-color: lightgreen;
-    border-color: white;
-  }
-
-  &:visited {
-    border-color: white;
   }
 
   &:focus {

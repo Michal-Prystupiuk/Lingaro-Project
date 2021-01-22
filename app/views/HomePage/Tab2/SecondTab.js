@@ -1,6 +1,12 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-const SecondTab = () => <FormattedMessage id="homePage.tab2.description" />;
+import { StyledTab } from './styledComponents';
+
+const SecondTab = () => (
+  <StyledTab>
+    <FormattedMessage id="homePage.tab2.description" />
+  </StyledTab>
+);
 
 export default SecondTab;

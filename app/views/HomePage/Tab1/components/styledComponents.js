@@ -16,13 +16,14 @@ export const StyledInput = styled.input`
 export const StyledListElement = styled(Flex)`
   margin-top: 20px;
   padding: 20px;
-  border: 1px solid black;
   border-radius: 10px;
   justify-content: space-between;
   align-items: center;
+  background-color: lightgrey;
 `;
 
 export const StyledListElementButton = styled(StyledButton)`
+  background-color: white;
   padding: 10px 15px;
   border-radius: 50%;
 `;

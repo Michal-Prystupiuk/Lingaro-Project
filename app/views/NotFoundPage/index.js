@@ -1,13 +1,23 @@
-/**
- * NotFoundPage
- *
- * This is the page we show when the user visits a url that doesn't have a route
- *
- */
-
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-const NotFoundPage = () => <FormattedMessage id="notFoundPage.title" />;
+import { StyledBody } from './styledComponents';
+
+const NotFoundPage = () => (
+  <StyledBody>
+    <FormattedMessage id="notFoundPage.title" />
+
+    <FormattedMessage
+      id="notFoundPage.redirect.title"
+      values={{
+        link: (
+          <a href="http://localhost:3000/homepage">
+            <FormattedMessage id="notFoundPage.redirect.link" />
+          </a>
+        ),
+      }}
+    />
+  </StyledBody>
+);
 
 export default NotFoundPage;

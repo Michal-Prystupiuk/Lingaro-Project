@@ -1,5 +1,7 @@
 {
   "notFoundPage.title": "There is no page at this url address!",
+  "notFoundPage.redirect.title": "To go back go there: {link}.",
+  "notFoundPage.redirect.link": "HomePage",
   "homePage.tab1.title": "Tab 1",
   "homePage.tab1.button.title": "Add",
   "homePage.tab1.toggle.button.show": "Show all",
