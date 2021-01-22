@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
-import { Flex, Button } from 'rebass/styled-components';
 
 import {
   addElementToList,
@@ -14,23 +13,30 @@ import {
 
 import { validateMinLength, validateAlreadyExist } from 'utils';
 
-import { ListElement, AddElementForm, SearchForm } from './components';
+import {
+  ListElement,
+  AddElementForm,
+  SearchForm,
+  ToggleButton,
+} from './components';
+
+import { StyledFirstTabContainer, Row } from './styledComponents';
 
 const FirstTab = () => {
   const dispatch = useDispatch();
   const [isActive, setIsActive] = useState(false);
 
-  const data = useSelector(SortedListSelector);
+  const elementList = useSelector(SortedListSelector);
   const currentSearchText = useSelector(SearchTextSelector);
 
   const renderListOfElement = () =>
-    data.map((element, index) =>
+    elementList.map((element, index) =>
       isActive && index % 2 === 1 ? (
         undefined
       ) : (
         <ListElement
-          obj={element}
           key={element.id}
+          obj={element}
           onClick={() => {
             dispatch(deleteElementFromList(element.id));
           }}
@@ -39,37 +45,40 @@ const FirstTab = () => {
     );
 
   return (
-    <Flex p="0px 20px 20px" flexDirection="column">
-      <Flex flexDirection="row" justifyContent="space-between" width="100%">
+    <StyledFirstTabContainer>
+      <Row>
         <Formik
-          initialValues={{ elementToAdd: '' }}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
+          initialValues={{ elementText: '' }}
+          onSubmit={({ elementText }, { setSubmitting, resetForm }) => {
             setSubmitting(false);
             resetForm();
-            dispatch(addElementToList(values.elementToAdd.trim()));
+            dispatch(addElementToList(elementText.trim()));
           }}
-          validate={({ elementToAdd }) =>
-            validateMinLength(elementToAdd) ||
-            validateAlreadyExist(elementToAdd, data)
+          validate={({ elementText }) =>
+            validateMinLength(elementText) ||
+            validateAlreadyExist(elementText, elementList)
           }
         >
-          {props => <AddElementForm props={props} />}
+          {formikProps => <AddElementForm formikProps={formikProps} />}
         </Formik>
 
         <Formik
-          initialValues={{ search: currentSearchText }}
+          initialValues={{ searchText: currentSearchText }}
           onSubmit={(value, { resetForm }) => {
             resetForm();
           }}
         >
-          {props => <SearchForm props={props} />}
+          {formikProps => <SearchForm formikProps={formikProps} />}
         </Formik>
 
-        <Button onClick={() => setIsActive(!isActive)}>toggle</Button>
-      </Flex>
+        <ToggleButton
+          onClick={() => setIsActive(!isActive)}
+          isActive={isActive}
+        />
+      </Row>
 
       {renderListOfElement()}
-    </Flex>
+    </StyledFirstTabContainer>
   );
 };
 

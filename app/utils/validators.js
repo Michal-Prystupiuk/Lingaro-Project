@@ -1,7 +1,7 @@
 export const validateMinLength = value => {
   if (!value) return undefined;
 
-  const isLengthValid = value.replace(/\s/g, '').length > 5;
+  const isLengthValid = value.replace(/\s/g, '').length > 4;
   const error = [];
 
   if (!isLengthValid) {

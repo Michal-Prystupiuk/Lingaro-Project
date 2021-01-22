@@ -5,8 +5,7 @@ import { PATHS, HOMEPAGE_TAB_NAMES } from 'consts';
 
 export const HOMEPAGE_TABS = [
   {
-    id: HOMEPAGE_TAB_NAMES.TAB_1,
-    title: 'tab1-title',
+    id: 'homePage.tab1.title',
     path: `/homepage/${HOMEPAGE_TAB_NAMES.TAB_1}`,
     onClick: () =>
       history.push(
@@ -14,8 +13,7 @@ export const HOMEPAGE_TABS = [
       ),
   },
   {
-    id: HOMEPAGE_TAB_NAMES.TAB_2,
-    title: 'tab2-title',
+    id: 'homePage.tab2.title',
     path: `/homepage/${HOMEPAGE_TAB_NAMES.TAB_2}`,
     onClick: () =>
       history.push(

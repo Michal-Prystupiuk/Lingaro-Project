@@ -1,10 +1,18 @@
 import { Flex, Button } from 'rebass/styled-components';
 import styled from 'styled-components';
 
+export const StyledHomePageContainer = styled(Flex)`
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+`;
+
 export const StyledHeader = styled(Flex)`
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
+  &:first-child {
+    margin-right: 10px;
+  }
 `;
 
 export const StyledButton = styled(Button)`
