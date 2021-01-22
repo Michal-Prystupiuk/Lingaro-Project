@@ -2,6 +2,8 @@
   "notFoundPage.title": "There is no page at this url address!",
   "homePage.tab1.title": "Tab 1",
   "homePage.tab1.button.title": "Add",
+  "homePage.tab1.toggle.button.show": "Show all",
+  "homePage.tab1.toggle.button.hide": "Hide odd toggle",
   "homePage.tab2.title": "Tab 2",
   "homePage.tab2.description": "This is tab 2 view"
 }

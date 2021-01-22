@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 
 import { updateSearchText } from 'containers/HomePage/actions';
 
-import { StyledSearchForm } from './styledComponents';
+import { SearchIcon } from 'icons';
+
+import {
+  StyledSearchForm,
+  StyledIcon,
+  StyledInputWithIcon,
+} from './styledComponents';
 
 /** @type {React.FunctionComponent <{
  * formikProps: {
@@ -27,13 +33,17 @@ const AddElementForm = ({
 
   return (
     <StyledSearchForm onSubmit={handleSubmit}>
-      <input
+      <StyledInputWithIcon
         type="text"
         onChange={handleChange}
         onBlur={handleBlur}
         value={searchText}
         name="searchText"
       />
+
+      <StyledIcon>
+        <SearchIcon />
+      </StyledIcon>
     </StyledSearchForm>
   );
 };

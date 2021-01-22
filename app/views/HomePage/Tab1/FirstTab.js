@@ -13,14 +13,12 @@ import {
 
 import { validateMinLength, validateAlreadyExist } from 'utils';
 
-import {
-  ListElement,
-  AddElementForm,
-  SearchForm,
-  ToggleButton,
-} from './components';
+import { SingleElement } from './components';
+import AddElementForm from './components/Column1';
+import SearchForm from './components/Column2';
+import ToggleButton from './components/Column3';
 
-import { StyledFirstTabContainer, Row } from './styledComponents';
+import { StyledFirstTabContainer, StyledTabRow } from './styledComponents';
 
 const FirstTab = () => {
   const dispatch = useDispatch();
@@ -29,24 +27,28 @@ const FirstTab = () => {
   const elementList = useSelector(SortedListSelector);
   const currentSearchText = useSelector(SearchTextSelector);
 
-  const renderListOfElement = () =>
-    elementList.map((element, index) =>
-      isActive && index % 2 === 1 ? (
-        undefined
-      ) : (
-        <ListElement
-          key={element.id}
-          obj={element}
-          onClick={() => {
-            dispatch(deleteElementFromList(element.id));
-          }}
-        />
-      ),
-    );
+  const renderListOfElement = () => {
+    let currentList = elementList;
+
+    if (isActive) {
+      currentList = elementList.filter((element, index) => index % 2 === 0);
+    }
+
+    return currentList.map(({ id, text }, index) => (
+      <SingleElement
+        key={id}
+        text={text}
+        onClick={() => {
+          dispatch(deleteElementFromList(id));
+        }}
+        index={index}
+      />
+    ));
+  };
 
   return (
     <StyledFirstTabContainer>
-      <Row>
+      <StyledTabRow>
         <Formik
           initialValues={{ elementText: '' }}
           onSubmit={({ elementText }, { setSubmitting, resetForm }) => {
@@ -75,7 +77,7 @@ const FirstTab = () => {
           onClick={() => setIsActive(!isActive)}
           isActive={isActive}
         />
-      </Row>
+      </StyledTabRow>
 
       {renderListOfElement()}
     </StyledFirstTabContainer>

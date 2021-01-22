@@ -2,15 +2,13 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
-import {
-  StyledHomePageContainer,
-  StyledHeader,
-  StyledButton,
-} from './styledComponents';
+import { StyledButton } from 'components';
+
+import { StyledHomePageContainer, StyledHeader } from './styledComponents';
 
 import { HOMEPAGE_TABS } from './consts';
-import FirstTab from './Tabs/Tab1';
-import SecondTab from './Tabs/Tab2';
+import FirstTab from './Tab1';
+import SecondTab from './Tab2';
 
 const HomePage = () => (
   <StyledHomePageContainer>

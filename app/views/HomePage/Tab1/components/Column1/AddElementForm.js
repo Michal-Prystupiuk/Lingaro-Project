@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
+import { StyledButton } from 'components';
+
+import { StyledInput } from '../styledComponents';
+
 import {
-  StyledAddElementForm,
+  StyledFormContainer,
   StyledErrorText,
-  StyledButton,
-  Row,
+  StyledFormRow,
 } from './styledComponents';
 
 /** @type {React.FunctionComponent <{
@@ -31,11 +34,11 @@ const AddElementForm = ({
     dirty,
   },
 }) => (
-  <StyledAddElementForm onSubmit={handleSubmit}>
+  <StyledFormContainer onSubmit={handleSubmit}>
     <StyledErrorText>{errors[0]}</StyledErrorText>
 
-    <Row hasError={errors.length > 0}>
-      <input
+    <StyledFormRow hasError={errors.length > 0}>
+      <StyledInput
         type="text"
         onChange={handleChange}
         onBlur={handleBlur}
@@ -46,8 +49,8 @@ const AddElementForm = ({
       <StyledButton type="submit" disabled={!isValid || !dirty || isSubmitting}>
         <FormattedMessage id="homePage.tab1.button.title" />
       </StyledButton>
-    </Row>
-  </StyledAddElementForm>
+    </StyledFormRow>
+  </StyledFormContainer>
 );
 
 AddElementForm.propTypes = {
