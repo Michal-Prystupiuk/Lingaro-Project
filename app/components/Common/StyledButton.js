@@ -12,7 +12,6 @@ export const StyledButton = styled(Button)`
   }
 
   &:focus {
-    background-color: lightblue;
     outline: none;
   }
 

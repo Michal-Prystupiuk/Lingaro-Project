@@ -11,7 +11,9 @@ export const ListSelector = createSelector(
 export const SortedListSelector = createSelector(
   selectElementList,
   state =>
-    state.data.filter(element => element.text.includes(state.searchText)),
+    state.data.filter(element =>
+      element.text.toLowerCase().includes(state.searchText),
+    ),
 );
 
 export const SearchTextSelector = createSelector(

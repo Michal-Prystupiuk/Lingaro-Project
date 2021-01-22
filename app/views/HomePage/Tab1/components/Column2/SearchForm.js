@@ -28,7 +28,7 @@ const AddElementForm = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(updateSearchText(searchText));
+    dispatch(updateSearchText(searchText.toLowerCase()));
   }, [searchText]);
 
   return (
